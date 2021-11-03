@@ -1,11 +1,13 @@
 import React from 'react';
 import AppointmentBanner from './appoinmentBanner/AppointmentBanner';
+import HomeBanner from './homeBanner/HomeBanner';
 import Services from './services/Services';
 
 const Home = () => {
     return (
         <div>
-            <h3>Home Page</h3>
+            
+            <HomeBanner></HomeBanner>
             <Services></Services>
             <AppointmentBanner></AppointmentBanner>
             

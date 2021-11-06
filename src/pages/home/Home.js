@@ -3,6 +3,7 @@ import AppointmentBanner from './appoinmentBanner/AppointmentBanner';
 import Contractus from './contractUs/Contractus';
 import ExceptionalDental from './exceptionelDental/ExceptionalDental';
 import HomeBanner from './homeBanner/HomeBanner';
+import InfoCard from './InfoCard/InfoCard';
 import Services from './services/Services';
 import Testimonial from './testimonial/Testimonial';
 
@@ -12,6 +13,7 @@ const Home = () => {
             
             
             <HomeBanner></HomeBanner>
+            <InfoCard></InfoCard>
             <Services></Services>
             <ExceptionalDental></ExceptionalDental>
             <AppointmentBanner></AppointmentBanner>

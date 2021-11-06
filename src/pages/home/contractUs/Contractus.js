@@ -41,7 +41,7 @@ const Contractus = () => {
         <TextField required sx={{backgroundColor:'white',my:3}} fullWidth label="Subject" id="fullWidth" />
         <TextField multiline rows={4} sx={{backgroundColor:'white'}} required fullWidth label="Your Messege" id="fullWidth" />
 
-        <Button type="submit" sx={{my:5,px:4}} variant="contained">SEND</Button>
+        <Button type="submit" sx={{my:5,px:4}} variant="contained">SUBMIT</Button>
 
         </form>
         </Box>

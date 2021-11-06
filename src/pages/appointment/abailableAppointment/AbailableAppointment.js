@@ -16,7 +16,7 @@ const AbailableAppointment = ({date}) => {
             <Typography sx={{fontWeight:'bold',color:'info.main',mt:3}} variant="h5">
                 Abailable Appointment On {date.toDateString()}
             </Typography>
-            <AppointmentBooking></AppointmentBooking>
+            <AppointmentBooking date={date}></AppointmentBooking>
 
 
         </div>

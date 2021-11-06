@@ -3,7 +3,7 @@ import { Box } from '@mui/system';
 import React from 'react';
 import BookingCard from '../bookingCard/BookingCard';
 
-const AppointmentBooking = () => {
+const AppointmentBooking = ({date}) => {
     const appointBooking=[
 
         {name:"Teeth Orthodontics",time:"8:00 AM - 9:00 AM",space:"10 SPACES AVAILABLE"},
@@ -18,11 +18,11 @@ const AppointmentBooking = () => {
 
 
     return (
-        <Box sx={{ flexGrow: 1,mt:5 }}>
+        <Box sx={{ flexGrow: 1,my:5 }}>
         <Container>
         <Grid container spacing={{ xs: 3, md: 2 }}>
           {
-              appointBooking.map(booking=><BookingCard booking={booking} key={Math.random()}></BookingCard>)
+              appointBooking.map(booking=><BookingCard booking={booking} key={Math.random()} date={date}></BookingCard>)
           }
         </Grid>
         </Container>

@@ -14,7 +14,7 @@ const style = {
     p: 4,
   };
 
-const BookingModal = ({bookingModalOpen,bookingModalClose,openBooking,booking}) => {
+const BookingModal = ({bookingModalOpen,bookingModalClose,openBooking,booking,date}) => {
 
     const {name,time,space}=booking;
 
@@ -48,13 +48,13 @@ const BookingModal = ({bookingModalOpen,bookingModalClose,openBooking,booking}) 
 
             <form onSubmit={bookingHandle}>
 
-            <TextField sx={{mb:2}} fullWidth label="Name" id="fullWidth" />
+            <TextField sx={{mb:2}} fullWidth label="Name" id="fullWidth" value={name || ''} />
             <TextField sx={{mb:2}} fullWidth label="Email" id="fullWidth" />
             <TextField sx={{mb:2}} fullWidth label="Phone" id="fullWidth" />
             <TextField sx={{mb:2}} fullWidth label="Time" id="fullWidth" />
-            <TextField sx={{mb:3}} fullWidth label="date" id="fullWidth" />
+            <TextField sx={{mb:3}} fullWidth label="date" id="fullWidth" value={date.toDateString()} />
 
-            <Button sx={{}} variant="contained" type="submit">SEND</Button>
+            <Button sx={{float:'right',px:3}} variant="contained" type="submit">SEND</Button>
             
 
 

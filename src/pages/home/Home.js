@@ -1,4 +1,5 @@
 import React from 'react';
+import Header from '../../components/header/Header';
 import AppointmentBanner from './appoinmentBanner/AppointmentBanner';
 import Contractus from './contractUs/Contractus';
 import ExceptionalDental from './exceptionelDental/ExceptionalDental';
@@ -11,7 +12,7 @@ const Home = () => {
     return (
         <div>
             
-            
+            <Header></Header>
             <HomeBanner></HomeBanner>
             <InfoCard></InfoCard>
             <Services></Services>

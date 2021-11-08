@@ -5,10 +5,11 @@ import { Link } from 'react-router-dom';
 import { useHistory,useLocation } from 'react-router';
 import useAuth from '../../hooks/useAuth';
 import logincover from '../../images/login.png';
+import google from '../../images/google.png';
 
 const Login = () => {
   const [loginData,setLoginData]=useState([]);
-  const {userLogin,isLoading,error} =useAuth();
+  const {userLogin,googleSingIn,isLoading,error} =useAuth();
   
   const location=useLocation();
   const history= useHistory();
@@ -33,6 +34,11 @@ const Login = () => {
      userLogin(loginData.email,loginData.password,history,location)
     e.preventDefault();
 
+  }
+
+  const handleGoogleSingin =()=>{
+    googleSingIn(history,location);
+    
   }
     return (
       <Box sx={{ flexGrow: 1,mt:3 }}>
@@ -96,6 +102,13 @@ const Login = () => {
             </Typography>
           </Link>
 
+          <Typography sx={{marginTop:'10px',color:'crimson'}} variant="h6" gutterBottom>
+             OR
+          </Typography>
+
+          <img onClick={handleGoogleSingin} src={google} alt="" width="30px"></img>
+
+          
           </Paper>
 
           

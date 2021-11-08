@@ -5,11 +5,12 @@ import { useHistory, useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import logincover from '../../../images/login.png';
+import google from '../../../images/google.png';
 
 
 const Register = () => {
     const [registerData,setRegisterData]=useState({});
-    const {userRegistation,user,isLoading,error}=  useAuth();
+    const {userRegistation,googleSingIn,user,isLoading,error}=  useAuth();
 
    const history= useHistory();
    const location= useLocation();
@@ -39,6 +40,11 @@ const Register = () => {
       e.preventDefault();
             
 
+    }
+
+    const handleGoogleSingin =()=>{
+      googleSingIn(history,location);
+      
     }
 
 
@@ -125,6 +131,12 @@ const Register = () => {
              Already Registered? Login Now
             </Typography>
             </Link>
+
+            <Typography sx={{marginTop:'10px',color:'crimson'}} variant="h6" gutterBottom>
+             OR
+          </Typography>
+
+          <img onClick={handleGoogleSingin} src={google} alt="" width="30px"></img>
 
 
             </Paper>

@@ -8,6 +8,7 @@ import Login from './pages/login/Login';
 import Register from './pages/login/register/Register';
 import AuthProvider from './contex/AuthProvider';
 import PrivateRoute from './pages/login/privateRoute/PrivateRoute';
+import Dashboard from './pages/dashboard/Dashboard';
 
 function App() {
  
@@ -21,6 +22,8 @@ function App() {
         <Route exact path='/'><Home></Home></Route>
         <Route path='/home'><Home></Home></Route>
         <PrivateRoute path='/appointment'><Appointment></Appointment></PrivateRoute>
+
+        <PrivateRoute path='/dashboard'><Dashboard></Dashboard></PrivateRoute>
   
         <Route path='/login'><Login></Login></Route>
         <Route path='/register'><Register></Register></Route>

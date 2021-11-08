@@ -36,7 +36,7 @@ const Register = () => {
         return;
       }
      
-      userRegistation(registerData.email,registerData.password,history,location)
+      userRegistation(registerData.email,registerData.password,registerData.username,history,location)
       e.preventDefault();
             
 
@@ -79,6 +79,17 @@ const Register = () => {
 
             <form onSubmit={handleUserRegister} >
             
+            <TextField sx={{mb:2}} 
+            required            
+            fullWidth
+            onChange={handleOnChange}
+            type="text" 
+            name="username" 
+            id="standard-basic" 
+            label="Name" 
+            variant="standard" />
+            <br/>
+
             <TextField sx={{mb:2}} 
             required            
             fullWidth

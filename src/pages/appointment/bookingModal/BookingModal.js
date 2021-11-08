@@ -1,6 +1,8 @@
 import { Backdrop, Button, Fade, Modal, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import React from 'react';
+import axios from 'axios';
+import React, { useState } from 'react';
+import useAuth from '../../../hooks/useAuth';
 
 const style = {
     position: 'absolute',
@@ -15,15 +17,54 @@ const style = {
   };
 
 const BookingModal = ({bookingModalOpen,bookingModalClose,openBooking,booking,date}) => {
-
+    const {user}=useAuth();
     const {name,time,space}=booking;
+  
+  const initializeInfo={patientName:user.displayName,
+                        email:user.email,phone:'',
+                    }
+
+  const [bookingInfo,setBookingInfo]=useState(initializeInfo);
+
+  const handleOnBlur=(e)=>{
+    const field=e.target.name;
+    const value=e.target.value;
+
+    const newInfo={...bookingInfo};
+    newInfo[field]=value;
+    setBookingInfo(newInfo);
+
+
+  }
 
     const bookingHandle =(e)=>{
 
-        bookingModalClose();
+      const appointment={
+        ...bookingInfo,
+        time,
+        serviceName:name,
+        date:date.toLocaleDateString(),
+
+
+      }
+      // console.log(appointment);
+      const url='http://localhost:5000/appointments';
+      axios.post(url,appointment)
+      .then(result=>{
+        if(result.data.insertedId){
+          alert('Booking Successfully !');
+          bookingModalClose();
+        }
+      })
+
+
+
+       
 
         e.preventDefault();
     }
+
+    
     
      return (
         <div>
@@ -48,11 +89,11 @@ const BookingModal = ({bookingModalOpen,bookingModalClose,openBooking,booking,da
 
             <form onSubmit={bookingHandle}>
 
-            <TextField sx={{mb:2}} fullWidth label="Name" id="fullWidth" value={name || ''} />
-            <TextField sx={{mb:2}} fullWidth label="Email" id="fullWidth" />
-            <TextField sx={{mb:2}} fullWidth label="Phone" id="fullWidth" />
-            <TextField sx={{mb:2}} fullWidth label="Time" id="fullWidth" />
-            <TextField sx={{mb:3}} fullWidth label="date" id="fullWidth" value={date.toDateString()} />
+            <TextField sx={{mb:2}} fullWidth label="Patient Name" id="fullWidth" name="patientName" onBlur={handleOnBlur} defaultValue={user.displayName || ''} />
+            <TextField sx={{mb:2}} fullWidth label="Email" id="fullWidth" name="email" onBlur={handleOnBlur} defaultValue={user.email || ''} />
+            <TextField sx={{mb:2}} fullWidth label="Phone" id="fullWidth" name="phone" onBlur={handleOnBlur} />
+            <TextField disabled sx={{mb:2}} fullWidth label="Time" id="fullWidth" defaultValue={time || ''} />
+            <TextField disabled aria-readonly sx={{mb:3}} fullWidth label="date" id="fullWidth" defaultValue={date.toDateString()} />
 
             <Button sx={{float:'right',px:3}} variant="contained" type="submit">SEND</Button>
             

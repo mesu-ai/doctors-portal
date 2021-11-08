@@ -1,5 +1,5 @@
 import  { useEffect, useState } from 'react';
-import { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut,onAuthStateChanged,signInWithPopup, GoogleAuthProvider  } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut,onAuthStateChanged,signInWithPopup, GoogleAuthProvider,updateProfile  } from "firebase/auth";
 import firebaseInitialize from '../pages/login/Firebase/firebase.init';
 
 firebaseInitialize();
@@ -37,7 +37,7 @@ const useFirebase = () => {
 
 
 
-    const userRegistation=(email,password,history,location)=>{
+    const userRegistation=(email,password,name,history,location)=>{
         const redirect_uri=location?.state?.from || '/';
 
         setLoding(true)
@@ -46,7 +46,17 @@ const useFirebase = () => {
 
          history.push(redirect_uri)
             
-            setUser(result.user);
+            // setUser(result.user);
+            const newUser={email:email,displayName:name}
+            setUser(newUser);
+
+            updateProfile(auth.currentUser, {
+                displayName: name
+              }).then(() => {
+                
+              }).catch((error) => {
+                
+              });
             
 
             

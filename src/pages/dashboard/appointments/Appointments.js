@@ -3,19 +3,24 @@ import React, { useEffect, useState } from 'react';
 import useAuth from '../../../hooks/useAuth';
 
 const Appointments = ({date}) => {
-    const {user}=useAuth();
+    const {user,token}=useAuth();
     const [appointment,setAppointment]=useState([]);
      console.log (date);
     
      const url = `http://localhost:5000/appointments?email=${user.email}&date=${date}`;
    
     useEffect(()=>{
-        fetch(url)
+        fetch(url,{
+            headers:{
+                'authorization':`Bearer ${token}`,
+            }
+            
+        })
         .then(res=>res.json())
         .then(data=>setAppointment(data));
 
 
-    },[date]);
+    },[date, token, url]);
     return (
         <div>
             <h3>Total Appointment: {appointment.length}</h3>

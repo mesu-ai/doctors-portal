@@ -1,6 +1,6 @@
 import './HomeBanner.css';
 import { Button, Container, Grid, Typography } from '@mui/material';
-import { Box, fontWeight } from '@mui/system';
+import { Box} from '@mui/system';
 import React from 'react';
 import chair from '../../../images/chair.png';
 

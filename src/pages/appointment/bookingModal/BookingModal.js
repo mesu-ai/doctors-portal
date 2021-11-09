@@ -18,7 +18,7 @@ const style = {
 
 const BookingModal = ({bookingModalOpen,bookingModalClose,openBooking,booking,date}) => {
     const {user}=useAuth();
-    const {name,time,space}=booking;
+    const {name,time}=booking;
   
   const initializeInfo={patientName:user.displayName,
                         email:user.email,phone:'',

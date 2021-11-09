@@ -48,7 +48,7 @@ const BookingModal = ({bookingModalOpen,bookingModalClose,openBooking,booking,da
 
       }
       // console.log(appointment);
-      const url='http://localhost:5000/appointments';
+      const url='http://stark-oasis-62897.herokuapp.com/appointments';
       axios.post(url,appointment)
       .then(result=>{
         if(result.data.insertedId){

@@ -5,9 +5,9 @@ import useAuth from '../../../hooks/useAuth';
 const Appointments = ({date}) => {
     const {user,token}=useAuth();
     const [appointment,setAppointment]=useState([]);
-     console.log (date);
+    //  console.log (date);
     
-     const url = `http://localhost:5000/appointments?email=${user.email}&date=${date}`;
+     const url = `http://stark-oasis-62897.herokuapp.com/appointments?email=${user.email}&date=${date}`;
    
     useEffect(()=>{
         fetch(url,{

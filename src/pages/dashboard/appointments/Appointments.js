@@ -18,7 +18,7 @@ const Appointments = ({date}) => {
     },[date]);
     return (
         <div>
-            <h3>{appointment.length}</h3>
+            <h3>Total Appointment: {appointment.length}</h3>
 
             <TableContainer component={Paper}>
             <Table sx={{ }} aria-label="simple table">
@@ -33,7 +33,7 @@ const Appointments = ({date}) => {
                 <TableBody>
                 {appointment.map((row) => (
                     <TableRow
-                    key={row.name}
+                    key={Math.random()}
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
                     <TableCell component="th" scope="row">

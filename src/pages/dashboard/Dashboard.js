@@ -15,17 +15,25 @@ import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { Grid } from '@mui/material';
-import Calendar from '../../components/shared/calendar/Calendar';
-import Appointments from './appointments/Appointments';
+import {
+  Switch, Route, Link, useRouteMatch
+} from "react-router-dom";
+import { ListItemButton } from '@mui/material';
+import DashboardHome from '../dashboardHome/DashboardHome';
+import MakeAdmin from './makeadmin/MakeAdmin';
+import AddDoctor from './adddoctor/AddDoctor';
+import useAuth from '../../hooks/useAuth';
+import AdminRoute from '../login/adminRoute/AdminRoute';
 
 const drawerWidth = 240;
 
 function Dashboard(props) {
+  const {admin}=useAuth();
   
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [date, setDate] = React.useState(new Date().toLocaleDateString());
+  let { path, url } = useRouteMatch();
+  
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -35,6 +43,50 @@ function Dashboard(props) {
     <div>
       <Toolbar />
       <Divider />
+      <List>
+      
+      <Link to='/appointment'>
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemText primary="Appointment" />
+            </ListItemButton>
+          </ListItem>
+      </Link>
+
+      <Link to={`${url}`}>
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemText primary="Dashboard" />
+            </ListItemButton>
+          </ListItem>
+      </Link>
+
+{admin &&
+    <Box>
+      
+      <Link to={`${url}/adddoctor`}>
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemText primary="Add Doctor" />
+            </ListItemButton>
+          </ListItem>
+      </Link>
+
+      <Link to={`${url}/makeadmin`}>
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemText primary="Make Admin" />
+            </ListItemButton>
+          </ListItem>
+      </Link>
+    </Box>
+
+}
+
+          
+      </List>
+      
+
       <List>
         {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
           <ListItem button key={text}>
@@ -113,18 +165,22 @@ function Dashboard(props) {
         sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
       >
         <Toolbar />
-        <Typography paragraph> 
-        <Grid container spacing={2}>
-            <Grid item xs={12} md={7}>
-              <Calendar date={date} setDate={setDate}></Calendar>
-                
-            </Grid>
-            <Grid item xs={12} md={5}>
-              <Appointments date={date}></Appointments>
-                
-            </Grid>
-        </Grid>
-        </Typography>
+        
+        <Switch>
+
+        <Route exact path={path}>
+          <DashboardHome></DashboardHome>
+        </Route>
+        <AdminRoute path={`${path}/makeadmin`}>
+          <MakeAdmin></MakeAdmin>  
+        </AdminRoute>
+
+        <AdminRoute path={`${path}/adddoctor`}>
+          <AddDoctor></AddDoctor>
+        </AdminRoute>
+
+      </Switch>
+        
       </Box>
     </Box>
   );
